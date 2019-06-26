@@ -1,21 +1,18 @@
 import cucumber.api.CucumberOptions;
-
-import cucumber.api.junit.Cucumber;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import net.masterthought.cucumber.Reportable;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-
+import org.testng.annotations.AfterSuite;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(features = "src/main/resources/features",plugin = {"html:target/cucumber-html-report", "json:target/cucumber-json-report.json"})
-public class TestDriverJunit {
-    @AfterClass
+
+@CucumberOptions(features = "src/test/resources/features",plugin = {"html:target/cucumber-html-report", "json:target/cucumber-json-report.json"})
+public class TestDriverTestNG extends AbstractTestNGCucumberTests {
+    @AfterSuite
     public static void afterTest(){
         File reportOutputDirectory = new File("target");
         List<String> jsonFiles = new ArrayList<String>();
