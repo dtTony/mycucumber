@@ -5,14 +5,21 @@ import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import net.masterthought.cucumber.Reportable;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseTest extends AbstractTestNGCucumberTests {
+    protected String features_value;
+
+    @BeforeSuite
+    public void beforeTest(){
+        features_value = "src/test/resources/features";
+    }
     @AfterSuite
-    public static void afterTest(){
+    public void afterTest(){
         File reportOutputDirectory = new File("target");
         List<String> jsonFiles = new ArrayList<String>();
         jsonFiles.add("target/cucumber-json-report.json");
